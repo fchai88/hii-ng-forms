@@ -1,0 +1,179 @@
+<div class="text-center body">
+  <form class="form-signup" [formGroup]="singupForm" (ngSubmit)="onSignup()">
+    <img class="mb-4" src="../../assets/dumbbell_icon.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Dumb Tracker</h1>
+    <label for="inputEmail" class="sr-only">Display name</label>
+    <input type="text" id="inputDisplay" name="inputDisplay" class="form-control" placeholder="Display name" autofocus
+      formControlName="displayName">
+    <div class="text-danger text-left" *ngIf="!DisplayName.valid && submitted">
+      <div *ngIf="DisplayName.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Enter a display name
+      </div>
+    </div>
+    <br/>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" autofocus 
+      formControlName="email">
+    <div class="text-danger text-left" *ngIf="!Email.valid && submitted">
+      <div *ngIf="Email.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Enter an email
+      </div>
+    </div>
+    <label for="inputConfirmEmail" class="sr-only">Re-enter email address</label>
+    <input type="email" id="inputConfirmEmail" name="inputConfirmEmail" class="form-control" placeholder="Re-enter email address" autofocus 
+      formControlName="confirmEmail">
+    <div class="text-danger text-left" *ngIf="(!ConfirmEmail.valid && submitted) || submitted">
+      <div *ngIf="ConfirmEmail.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Confirm email
+      </div>
+      <div *ngIf="singupForm.errors?.emailDidNotMatch && ConfirmEmail.touched">
+        <i class="material-icons md-18">error_outline</i> Emails do not match
+      </div>
+    </div>
+    <br/>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required
+      formControlName="password">
+    <small id="passwordHelpBlock" class="form-text text-muted text-left">
+      Minimum eight characters, at least one uppercase letter, one lowercase letter and one number.
+    </small>
+    <div class="text-danger text-left" *ngIf="!Password.valid && submitted">
+      <div *ngIf="Password.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Enter a password
+      </div>
+      <div *ngIf="Password.errors?.pattern">
+        <i class="material-icons md-18">error_outline</i> Minimum eight characters, at least one uppercase letter, 
+        one lowercase letter and one number.
+      </div>
+    </div>
+    <label for="inputConfirmPassword" class="sr-only">Re-enter password</label>
+    <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" class="form-control" placeholder="Re-enter password" required
+      formControlName="confirmPassword">
+    <div class="text-danger text-left" *ngIf="(!ConfirmPassword.valid && submitted) || submitted">
+      <div *ngIf="ConfirmPassword.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Confirm password
+      </div>
+      <div *ngIf="singupForm.errors?.passDidNotMatch && ConfirmPassword.touched">
+        <i class="material-icons md-18">error_outline</i> Passwords do not match
+      </div>
+    </div>
+    <br/>
+    <div class="text-left">
+      <label id="genderLbl" class="rdo-lbl">Gender</label><br/>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="rdoMale" name="gender" class="custom-control-input" value="Male"
+          formControlName="gender">
+        <label class="custom-control-label" for="rdoMale">Male</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="rdoFemale" name="gender" class="custom-control-input" value="Female"
+          formControlName="gender">
+        <label class="custom-control-label" for="rdoFemale">Female</label>
+      </div>
+    </div>
+    <div class="text-danger text-left" *ngIf="!Gender.valid && submitted">
+      <div *ngIf="Gender.errors?.required">
+        <i class="material-icons md-18">error_outline</i> Select gender
+      </div>
+    </div>
+    <br/>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputWeight" class="sr-only">Weight</label>
+        <input type="number" class="form-control" id="inputWeight" placeholder="Weight in lbs"
+          formControlName="weight">
+        <div class="text-danger text-left" *ngIf="!Weight.valid && submitted">
+          <div *ngIf="Weight.errors?.required">
+            <i class="material-icons md-18">error_outline</i> Enter weight
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputHeightFt" class="sr-only">Height (Feet)</label>
+        <select id="inputHeightFt" class="form-control" formControlName="heightFt">
+          <option value="" class="text-muted">Height (Feet)</option>
+          <option value="1">1'</option>
+          <option value="2">2'</option>
+          <option value="2">3'</option>
+          <option value="3">4'</option>
+          <option value="4">5'</option>
+          <option value="5">6'</option>
+          <option value="6">7'</option>
+          <option value="7">8'</option>
+        </select>
+        <div class="text-danger text-left" *ngIf="!HeightFt.valid && submitted">
+          <div *ngIf="HeightFt.errors?.required">
+            <i class="material-icons md-18">error_outline</i> Enter height (ft)
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputHeightIn" class="sr-only">Height (Inches)</label>
+        <select id="inputHeightIn" class="form-control" formControlName="heightIn">
+          <option value="" class="text-muted">Height (Inches)</option>
+          <option value="0">0"</option>
+          <option value="1">1"</option>
+          <option value="2">2"</option>
+          <option value="3">3"</option>
+          <option value="4">4"</option>
+          <option value="5">5"</option>
+          <option value="6">6"</option>
+          <option value="7">7"</option>
+          <option value="8">8"</option>
+          <option value="9">9"</option>
+          <option value="10">10"</option>
+          <option value="11">11"</option>
+        </select>
+        <div class="text-danger text-left" *ngIf="!HeightIn.valid && submitted">
+          <div *ngIf="HeightIn.errors?.required">
+            <i class="material-icons md-18">error_outline</i> Enter height (in)
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="text-left">
+      <label class="font-weight-bold">Tell us about your Fitness Goal:</label>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="rdoGoal1" name="fitnessGoal" class="custom-radio custom-control-input" formControlName="fitnessGoal"
+          value="Gain weight and muscle" (click)="otherFitnessChanged(false)">
+        <label class="custom-control-label" for="rdoGoal1">Gain weight and muscle</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="rdoGoal2" name="fitnessGoal" class="custom-radio custom-control-input" formControlName="fitnessGoal"
+          value="Be able to run marathons and curcuits" (click)="otherFitnessChanged(false)">
+        <label class="custom-control-label" for="rdoGoal2">Be able to run marathons and curcuits</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="rdoGoal3" name="fitnessGoal" class="custom-radio custom-control-input" formControlName="fitnessGoal"
+          value="Lose significant weight and eat healthier" (click)="otherFitnessChanged(false)">
+        <label class="custom-control-label" for="rdoGoal3">Lose significant weight and eat healthier</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="rdoGoal5" name="fitnessGoal" class="custom-radio custom-control-input" formControlName="fitnessGoal"
+          value="Maintain relative weight and build but leaner" (click)="otherFitnessChanged(false)">
+        <label class="custom-control-label" for="rdoGoal5">Maintain relative weight and build but leaner</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="rdoGoal6" name="fitnessGoal" class="custom-radio custom-control-input" formControlName="fitnessGoal"
+          value="Other" (click)="otherFitnessChanged(true)">
+        <label class="custom-control-label" for="rdoGoal6">Other</label>
+      </div>
+      <div class="text-danger text-left" *ngIf="!FitnessGoal.valid && submitted">
+        <div *ngIf="FitnessGoal.errors?.required">
+          <i class="material-icons md-18">error_outline</i> Select fitness goal
+        </div>
+      </div>
+      <div *ngIf="fitnessOtherSelected">
+        <label for="inputGoalOther" class="sr-only">Other, please specify</label>
+        <input type="email" id="inputGoalsOther" name="inputGoalOther" class="form-control" placeholder="Other, please specify" autofocus
+          formControlName="fitnessGoalOther">
+          <div class="text-danger text-left" *ngIf="singupForm.errors?.specifyOther && submitted">
+            <i class="material-icons md-18">error_outline</i> Please specify
+          </div>
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <a [routerLink]="['/auth/signin']" class="text-muted">Signin to account</a>
+  </form>
+</div>

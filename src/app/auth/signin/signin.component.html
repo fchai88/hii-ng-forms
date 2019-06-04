@@ -1,0 +1,24 @@
+<div class="text-center body">
+  <form class="form-signin" (ngSubmit)="login(f)" #f="ngForm">
+    <img class="mb-4" src="../../assets/dumbbell_icon.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Dumb Tracker</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required
+      autofocus [(ngModel)]="email" #inputEmail="ngModel">
+    <div class="text-danger text-left" *ngIf="!inputEmail.valid && submitted">
+      <i class="material-icons md-18">error_outline</i> Enter an email
+    </div>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required
+      [(ngModel)]="password" #inputPassword="ngModel">
+    <div class="text-danger text-left" *ngIf="!inputPassword.valid && submitted">
+      <i class="material-icons md-18">error_outline</i> Enter a password
+    </div>
+    <div class="text-danger text-left" *ngIf="errorMessage.length > 0">
+      {{ errorMessage }}
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <a [routerLink]="['/auth/signup']" class="text-muted">Create account</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-{{ today | date:'yyyy' }}</p>
+  </form>
+</div>
